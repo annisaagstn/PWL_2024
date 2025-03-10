@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhotoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,9 +65,11 @@ Route::get('/articles/{id}', function ($id) {
     
     Route::resource('photos', PhotoController::class);
 
-    Route::resource('photos', PhotoController::class)->only([ 
-        'index', 'show' 
-        ]); 
-        Route::resource('photos', PhotoController::class)->except([ 
-        'create', 'store', 'update', 'destroy' 
+    Route::resource('photos', PhotoController::class)->only([
+        'index', 'show'
         ]);
+        Route::resource('photos', PhotoController::class)->except([         'create', 'store', 'update', 'destroy'
+        ]);
+
+        Route::get('/greeting', [WelcomeController::class,
+        'greeting']);
